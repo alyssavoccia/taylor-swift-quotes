@@ -1,10 +1,13 @@
 from tkinter import *
-
+import requests
 
 def get_quote():
-    pass
-    #Write your code here.
+    response = requests.get("https://taylorswiftapi.onrender.com/get")
+    response.raise_for_status()
 
+    data = response.json()
+    quote = data["quote"]
+    canvas.itemconfigure(quote_text, text=quote)
 
 
 window = Tk()
